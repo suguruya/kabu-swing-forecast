@@ -1,0 +1,31 @@
+{
+  // 保存時にフォーマット実行（JS/TSはPrettier、PythonはBlack）
+  "editor.formatOnSave": true,
+
+  // 保存時にESLintの自動修正＆import整列も走らせる（明示的に）
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+
+  // デフォルト整形はPrettier（JS/TS/React系）
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+
+  // PythonはBlackでフォーマット
+  "[python]": { "editor.defaultFormatter": "ms-python.black-formatter" },
+  "python.analysis.typeCheckingMode": "basic", // 型チェック軽め設定
+
+  // 改行コード/EOLの統一（WSL/Linux前提）
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+
+  // VSCode ESLint拡張が見る対象言語
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+
+  // 仮想環境を見つけやすく（プロジェクト直下の.venvを優先したい場合）
+  "python.venvPath": ".venv"
+}

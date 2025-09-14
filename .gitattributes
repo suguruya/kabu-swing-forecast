@@ -1,0 +1,10 @@
+# すべてのテキストは LF
+* text=auto eol=lf
+
+# 以下のファイルはバイナリファイルであると宣言してテキスト変換させない
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.pdf  binary
+*.woff* binary

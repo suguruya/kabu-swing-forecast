@@ -1,0 +1,9 @@
+# すべてのエディタで書式ルールを揃える
+root = true
+
+[*]
+end_of_line = lf           # 改行はLF
+insert_final_newline = true # 末尾改行を入れる
+charset = utf-8
+indent_style = space
+indent_size = 2

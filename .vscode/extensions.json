@@ -1,0 +1,14 @@
+{
+  // このリポを開いたときにVS Codeがインストール推奨を出す
+  "recommendations": [
+    "dbaeumer.vscode-eslint",        // JS/TSのLint & 自動修正
+    "esbenp.prettier-vscode",        // コード整形（JS/TS/JSON等）
+    "EditorConfig.EditorConfig",     // エディタ間で書式を統一
+    "ms-python.python",              // Python基本機能
+    "ms-python.vscode-pylance",      // Pythonの高機能言語サーバ
+    "ms-python.black-formatter",     // Black整形
+    "ms-vscode-remote.remote-wsl",   // WSLで開発するなら
+    "ms-azuretools.vscode-docker",   // Docker使うなら
+    "ms-vscode-remote.remote-containers" // Dev Containers使うなら
+  ]
+}
