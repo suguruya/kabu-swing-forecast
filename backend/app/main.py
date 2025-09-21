@@ -72,3 +72,18 @@ def get_daily_stock_info():
     print(items)
     norm = [_normalize_stock(item) for item in items]
     return StockInfoResponse(count=len(norm), items=norm)
+
+
+@app.get("/daily/{code}", response_model=List[Daily])
+def get_daily_stock_data(
+    code: str, from_date: str = "20240620", to_date: str = "20250620"
+):
+    _, id_token = ensure_tokens()
+    res = requests.get(
+        f"{JQ_BASE}/prices/daily_quotes?code={code}&from={from_date}&to={to_date}",
+        headers={"Authorization": f"Bearer {id_token}"},
+    )
+    res.raise_for_status()
+    data = res.json()
+    items = data.get("daily_quotes", [])
+    return [Daily(**item) for item in items]

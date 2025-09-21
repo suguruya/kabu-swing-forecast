@@ -1,8 +1,22 @@
 import requests
+from auth import ensure_tokens
+import json
+import pandas as pd
 
 BASE = "https://api.jquants.com/v1"
 
-idToken = "eyJraWQiOiJHQXNvU2xxUzMyUktLT2lVYm1xcjU3ekdYNE1TVFhsWFBrbDNJTmhWKzNzPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiJiY2Q4NjcxMC04NjMwLTRjZWUtOWYwYy00N2M1YWY5ZmJhMmIiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiaXNzIjoiaHR0cHM6XC9cL2NvZ25pdG8taWRwLmFwLW5vcnRoZWFzdC0xLmFtYXpvbmF3cy5jb21cL2FwLW5vcnRoZWFzdC0xX0FGNjByeXJ2NCIsImNvZ25pdG86dXNlcm5hbWUiOiJiY2Q4NjcxMC04NjMwLTRjZWUtOWYwYy00N2M1YWY5ZmJhMmIiLCJvcmlnaW5fanRpIjoiMGIzYjA4MjQtMjhjYS00MGE5LWI2MGEtNmU3ZTlhNzY3NGEzIiwiYXVkIjoiNXZyN2xiOGppdThvZmhvZmJmYWxmbm1waWkiLCJldmVudF9pZCI6IjA1OTUzOTgxLTJhMjgtNDFhZS05NDk3LWQzNWMyZjZjMzRhNyIsInRva2VuX3VzZSI6ImlkIiwiYXV0aF90aW1lIjoxNzU4NDQxNDEyLCJleHAiOjE3NTg1Mjk0OTIsImlhdCI6MTc1ODQ0MzA5MiwianRpIjoiYzlkNzY1MzctZWIwMS00Y2E1LTg2NzctMWRjNzQyNjAxY2Y0IiwiZW1haWwiOiJzZHdpbXBlai4yNUBnbWFpbC5jb20ifQ.Ml9wphmIcpuXVngdF_kqnEauX3icGukIfPN-FmPY3tMC86wt6_te-ht8rAfOK5Zl9B3LFMyW2T32VBa5b3RiCaI-5GzJnWdejStjxMGuVPzu__4rz6tZcdfgIkN-zmsJRjQrpxmI2dglzIqyl21cEJm_Gxb5EfsPOgcGDtT1xdM_n83tuFQIbyF6OxH-SS8qafiNV1KY3l-siYJ36a2_vpuBk14YsoFq215jXFKXMKKSxQJv3h-47kdaCgDwqCOhYpaHj52tin9RWMuZoeVTLM-OQZyMRQ9toka62bjCYdRzaabrVAbvVm94KAhVzPvjOhzubeBD8nCKAHI6uSHXgQ"
-headers = {"Authorization": f"Bearer {idToken}"}
-res = requests.get(f"{BASE}/listed/info", headers=headers)
-print(res.json())
+refreshToken, idToken = ensure_tokens()
+
+code = "7203"
+from_date = "20240620"
+to_date = "20250620"
+
+headers = {"Authorization": "Bearer {}".format(idToken)}
+res = requests.get(
+    f"{BASE}/prices/daily_quotes?code={code}&from={from_date}&to={to_date}",
+    headers=headers,
+)
+data = res.json()
+items = data.get("daily_quotes", [])
+df = pd.DataFrame(items)
+print(df)
