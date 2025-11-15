@@ -11,12 +11,15 @@ out/                     # Next.js export などの出力先。生成物のた�
 # -----------------------
 # Python（バックエンド）
 # -----------------------
-backend/.venv/           # Python 仮想環境の実体。マシン/パス依存。uv/venvで再作成できる
-__pycache__/             # 実行時に生成されるバイトコードキャッシュ（*.pyc を格納）
-*.pyc                    # 同上：バイトコードファイル本体。自動生成される
-.pytest_cache/           # pytest の実行キャッシュ。再実行で再生成
-.mypy_cache/             # mypy の型チェックキャッシュ
-.ruff_cache/             # Ruff の静的解析キャッシュ
+backend/.venv/                * Python 仮想環境の実体。マシン/パス依存。uv/venvで再作成できる
+backend/__pycache__/*
+backend/app/__pycache__/*     # 実行時に生成されるバイトコードキャッシュ（*.pyc を格納）
+*.pyc                         # 同上：バイトコードファイル本体。自動生成される
+.pytest_cache/                # pytest の実行キャッシュ。再実行で再生成
+.mypy_cache/                  # mypy の型チェックキャッシュ
+.ruff_cache/                  # Ruff の静的解析キャッシュ
+backend/.env
+backend/app/__pycache__/*.pyc
 
 # -----------------------
 # Env / Secrets（機密）
